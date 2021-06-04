@@ -52,7 +52,7 @@ namespace CTRPluginFramework
 		"Jurassic Cat",//
 		"Viking Cat",
 		"Pirate Cat",
-		"Theif Cat",
+		"Thief Cat",
 		"Bishop Cat",
 		"Mystic Cat",
 		"Shaman Cat",//
