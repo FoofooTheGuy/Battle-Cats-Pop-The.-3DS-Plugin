@@ -1,0 +1,177 @@
+FFFFFFFF Empty
+00 (Nothing) (Crash When Used in Battle)
+01 (Nothing) (Crash When Used in Battle)
+02 Basic Cat
+03 Tank Cat
+04 Axe Cat
+05 Gross Cat
+06 Cow Cat
+07 Bird Cat
+08 Fish Cat
+09 Lizard Cat
+0A Titan Cat
+0B Actress Cat
+0C KungFu Cat
+0D Mr.
+0E Bondage Cat
+0F Dom Cat
+10 Cats in a Box
+11 Panties Cat
+12 Moneko
+13 Tricycle Cat
+14 Ninja Cat
+15 Zombie Cat
+16 Samurai Cat
+17 Sumo Cat
+18 Boogie Cat
+19 Skirt Cat
+1A Valkyrie Cat
+1B Bahamut Cat
+1C ダミー (Crash When Used in Battle)
+1D ダミー (Crash When Used in Battle)
+1E ダミー (Crash When Used in Battle)
+1F ダミー (Crash When Used in Battle)
+20 Bodhi Cat
+21 Delinquent Cat
+22 Hip Hop Cat
+23 Kotatsu Cat
+24 Nekoluga
+25 Nerd Cat
+26 Swimmer Cat
+27 Pogo Cat
+28 Wheel Cat
+29 Apple Cat
+2A Bath Cat
+2B Salon Cat
+2C Ice Cat
+2D Cat Mecha
+2E Ogre Cat
+2F ダミー (Crash When Used in Battle)
+30 Jurassic Cat
+31 Viking Cat
+32 Pirate Cat
+33 Theif Cat
+34 Bishop Cat
+35 Mystic Cat
+36 Shaman Cat
+37 ダミー (Crash When Used in Battle)
+38 ダミー (Crash When Used in Battle)
+39 Witch Cat
+3A Archer Cat
+3B Marader Cat
+3C Swordscat
+3D Baby Cat
+3E Bronze Cat
+3F Sushi Cat
+40 ダミー (Crash When Used in Battle)
+41 Sports Cat
+42 ダミー (Crash When Used in Battle)
+43 ダミー (Crash When Used in Battle)
+44 ダミー (Crash When Used in Battle)
+45 ダミー (Crash When Used in Battle)
+46 ダミー (Crash When Used in Battle)
+47 ダミー (Crash When Used in Battle)
+48 Salerycat
+49 Sanada Yukimura
+4A Maeda Keiji
+4B Oda Nobunaga
+4C Reindeer Cat
+4D Windy
+4E Thundia
+4F ダミー (Crash When Used in Battle)
+50 Space Cat
+51 Adult Cat
+52 Evil Cat
+53 Doll Cats
+54 ダミー (Crash When Used in Battle)
+55 Sodom
+56 Megidora
+57 Vars
+58 Kamukura
+59 Raiden
+5A Jumprope Cats
+5B ダミー (Crash When Used in Battle)
+5C ダミー (Crash When Used in Battle)
+5D Crazed Cat
+5E Crazed Tank Cat
+5F Crazed Axe Cat
+60 Crazed Legs
+61 Crazed Cow Cat
+62 Crazed Bird Cat
+63 Crazed Fish Cat
+64 Crazed Lizard Cat
+65 Crazed Titan Cat
+66 Maiden Cat
+67 ダミー (Crash When Used in Battle)
+68 ダミー (Crash When Used in Battle)
+69 Singer Cat
+6A Koi Cat
+6B Kuu
+6C Kai
+6D Coppermine
+6E ダミー (Crash When Used in Battle)
+6F Madam Bride
+70 ダミー (Crash When Used in Battle)
+71 ダミー (Crash When Used in Battle)
+72 ダミー (Crash When Used in Battle)
+73 ダミー (Crash When Used in Battle)
+74 ダミー (Crash When Used in Battle)
+75 ダミー (Crash When Used in Battle)
+76 ダミー (Crash When Used in Battle)
+77 ダミー (Crash When Used in Battle)
+78 ダミー (Crash When Used in Battle)
+79 ダミー (Crash When Used in Battle)
+7A ダミー (Crash When Used in Battle)
+7B ダミー (Crash When Used in Battle)
+7C Vacation Queen
+7D Bean Cats
+7E Date Masamune
+7F Takeda Shingen
+80 Clockwork Cat
+81 Flower Cat
+82 Vengeful Cat
+83 Gold Cat
+84 Ururun Wolf
+85 Neneko
+86 KungFu Cat G
+87 ダミー (Crash When Used in Battle)
+88 Urashimataro
+89 Grateful Crane
+8A Momotaro
+8B Kasa Jizo
+8C Kaguya-hime
+8D ダミー (Crash When Used in Battle)
+8E (Blank Name) (Crash When Used in Battle)
+8F (Blank Name) (Crash When Used in Battle)
+90 (Blank Name) (Crash When Used in Battle)
+91 (Blank Name) (Crash When Used in Battle)
+92 (Blank Name) (Crash When Used in Battle)
+93 (Blank Name) (Crash When Used in Battle)
+94 (Blank Name) (Crash When Used in Battle)
+95 (Blank Name) (Crash When Used in Battle)
+96 (Blank Name) (Crash When Used in Battle)
+97 (Blank Name) (Crash When Used in Battle)
+98 (Blank Name) (Crash When Used in Battle)
+99 ([NUM3] minutes left) (Crash When Used in Battle)
+9A (Weird Line) (Crash When Used in Battle)
+9B (Weird Line) (Crash When Used in Battle)
+9C (Weird Line) (Crash When Used in Battle)
+9D (Weird Line) (Crash When Used in Battle)
+9E あと (It's Quite Wide Too) (Crash When Used in Battle)
+9F ニ (or maybe it's "="?) (Crash When Used in Battle)
+F0 (Blank Name) (Crash When Used in Battle)
+F1 (Blank Name) (Crash When Used in Battle)
+F2 (Blank Name) (Crash When Used in Battle)
+F3 (Blank Name) (Crash When Used in Battle)
+F4 (Blank Name) (Crash When Used in Battle)
+F5 (Blank Name) (Crash When Used in Battle)
+F6 (Blank Name) (Crash When Used in Battle)
+F7 (Blank Name) (Crash When Used in Battle)
+F8 (Blank Name) (Crash When Used in Battle)
+F9 (Blank Name) (Crash When Used in Battle)
+FA (Blank Name) (Crash When Used in Battle)
+FB (Blank Name) (Crash When Used in Battle)
+FC (Blank Name) (Crash When Used in Battle)
+FD (Blank Name) (Crash When Used in Battle)
+FE (Blank Name) (Crash When Used in Battle)
+FF (Blank Name) (Crash When Used in Battle)

@@ -1,0 +1,24 @@
+Author: FoofooTheGuy
+
+Version: # Plugin version
+    Major: 1
+    Minor: 0
+    Revision: 0
+
+Targets: # Low TitleId of games which are compatibles with this plugin (0 for all)
+    - 0x0018BC00
+
+Title: TBCP Luma 3DS Plugin
+
+Summary: A CTRPF Plugin, with a lot of hacking tools
+
+Description: |
+  This plugin gives you access many hacking tools. Built using blank template
+
+  Features:
+    - Infinite cat food
+    - Infinite XP
+    - Infinite Gold Tickets
+    - Advanced team management
+    - Quality of life features
+    - Action Replay engine with extra capabilities
