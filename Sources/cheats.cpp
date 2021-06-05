@@ -1,5 +1,4 @@
 #include "cheats.hpp"
-#include "strings.hpp"
 #include "IDList.hpp"
 //using namespace GameHelper;
 
@@ -279,6 +278,8 @@ namespace CTRPluginFramework
     void UnitEditor(MenuEntry *entry) {
 	std::string namevalue;
     u8 ID;
+	u32 sav;
+	Process::Read32(0x8879838, sav);
     optKb->Populate(NameEdit);
 	switch (optKb->Open())
 	{
@@ -288,17 +289,12 @@ namespace CTRPluginFramework
 			if (Process::Write32(0x8103BEC, 0)) {
 			Process::Write8(0x8103BEC, ID);
 			}
-		switch(*(u32 *)0x806BE88) {
-			case 0x9085C: 
-			case 0x8C7FC: 
-			case 0x8F3DC:
-			case 0xC: 
-			OSD::Notify(Color::Red << "Please select a SAVE FILE first!");
-			break;
-			default: {
+			if(sav == 0) {
+			MessageBox("Please select a save file first!")();
+			}
+			else {
 			OSD::Notify(Color::White << "Unit edit " << Color::Green << "SUCCESSFUL!"); 
-			} break;
-		}
+			}
 		}
 		break;
 	case 1:
@@ -624,16 +620,11 @@ namespace CTRPluginFramework
 			Process::Write32(0x8103BEC, 0x8C);
 			break;
 		}
-			switch(*(u32 *)0x806BE88) {
-			case 0x9085C: 
-			case 0x8C7FC: 
-			case 0x8F3DC:
-			case 0xC:
-			OSD::Notify(Color::Red << "Please select a SAVE FILE first!");
-			break;
-			default: {
+			if(sav == 0) {
+			MessageBox("Please select a save file first!")();
+			}
+			else {
 			OSD::Notify(Color::White << "Unit edit " << Color::Green << "SUCCESSFUL!"); 
-			} break;
 			}
 		break;
     }
@@ -649,76 +640,61 @@ namespace CTRPluginFramework
 		if(*(u8 *)0x806BE88 == 0x4C) {
 		if(*(u8 *)0x8144010 == 0) //Team A equip menu
 		{
-			if (Process::Read32(0x8103BEC, val)) Process::Write32(0x01E81000, val);
-			if (Process::Read32(0x8103BF0, val)) Process::Write32(0x01E81004, val);
-			if (Process::Read32(0x8103BF4, val)) Process::Write32(0x01E81008, val);
-			if (Process::Read32(0x8103BF8, val)) Process::Write32(0x01E8100C, val);
-			if (Process::Read32(0x8103BFC, val)) Process::Write32(0x01E81010, val);
-			if (Process::Read32(0x8103C00, val)) Process::Write32(0x01E81014, val);
-			if (Process::Read32(0x8103C04, val)) Process::Write32(0x01E81018, val);
-			if (Process::Read32(0x8103C08, val)) Process::Write32(0x01E8101C, val);
-			if (Process::Read32(0x8103C0C, val)) Process::Write32(0x01E81020, val);
-			if (Process::Read32(0x8103C10, val)) Process::Write32(0x01E81024, val);
+			for (int i = 0; i < 40; i+=4)
+			{
+				if (Process::Read32((0x8103BEC + i), val))
+				{
+					Process::Write32((0x01E81000 + i), val);
+				}
+			}
 			Process::Write8(0x01E81028, 0xA);
 			OSD::Notify(Color::White << "Team A Copied!");
 		}
 		if(*(u8 *)0x8144010 == 0x1) //Team B equip menu
 		{
-			if (Process::Read32(0x8103C14, val)) Process::Write32(0x01E81000, val);
-			if (Process::Read32(0x8103C18, val)) Process::Write32(0x01E81004, val);
-			if (Process::Read32(0x8103C1C, val)) Process::Write32(0x01E81008, val);
-			if (Process::Read32(0x8103C20, val)) Process::Write32(0x01E8100C, val);
-			if (Process::Read32(0x8103C24, val)) Process::Write32(0x01E81010, val);
-			if (Process::Read32(0x8103C28, val)) Process::Write32(0x01E81014, val);
-			if (Process::Read32(0x8103C2C, val)) Process::Write32(0x01E81018, val);
-			if (Process::Read32(0x8103C30, val)) Process::Write32(0x01E8101C, val);
-			if (Process::Read32(0x8103C34, val)) Process::Write32(0x01E81020, val);
-			if (Process::Read32(0x8103C38, val)) Process::Write32(0x01E81024, val);
+			for (int i = 0; i < 40; i+=4)
+			{
+				if (Process::Read32((0x8103C14 + i), val))
+				{
+					Process::Write32((0x01E81000 + i), val);
+				}
+			}
 			Process::Write8(0x01E81028, 0xB);
 			OSD::Notify(Color::White << "Team B Copied!");
 		}
 		if(*(u8 *)0x8144010 == 0x2) //Team C equip menu
 		{
-			if (Process::Read32(0x8103C3C, val)) Process::Write32(0x01E81000, val);
-			if (Process::Read32(0x8103C40, val)) Process::Write32(0x01E81004, val);
-			if (Process::Read32(0x8103C44, val)) Process::Write32(0x01E81008, val);
-			if (Process::Read32(0x8103C48, val)) Process::Write32(0x01E8100C, val);
-			if (Process::Read32(0x8103C4C, val)) Process::Write32(0x01E81010, val);
-			if (Process::Read32(0x8103C50, val)) Process::Write32(0x01E81014, val);
-			if (Process::Read32(0x8103C54, val)) Process::Write32(0x01E81018, val);
-			if (Process::Read32(0x8103C58, val)) Process::Write32(0x01E8101C, val);
-			if (Process::Read32(0x8103C5C, val)) Process::Write32(0x01E81020, val);
-			if (Process::Read32(0x8103C60, val)) Process::Write32(0x01E81024, val);
+			for (int i = 0; i < 40; i+=4)
+			{
+				if (Process::Read32((0x8103C3C + i), val))
+				{
+					Process::Write32((0x01E81000 + i), val);
+				}
+			}
 			Process::Write8(0x01E81028, 0xC);
 			OSD::Notify(Color::White << "Team C Copied!");
 		}	
 		if(*(u8 *)0x8144010 == 0x3) //Team D equip menu
 		{
-			if (Process::Read32(0x8103C64, val)) Process::Write32(0x01E81000, val);
-			if (Process::Read32(0x8103C68, val)) Process::Write32(0x01E81004, val);
-			if (Process::Read32(0x8103C6C, val)) Process::Write32(0x01E81008, val);
-			if (Process::Read32(0x8103C70, val)) Process::Write32(0x01E8100C, val);
-			if (Process::Read32(0x8103C74, val)) Process::Write32(0x01E81010, val);
-			if (Process::Read32(0x8103C78, val)) Process::Write32(0x01E81014, val);
-			if (Process::Read32(0x8103C7C, val)) Process::Write32(0x01E81018, val);
-			if (Process::Read32(0x8103C80, val)) Process::Write32(0x01E8101C, val);
-			if (Process::Read32(0x8103C84, val)) Process::Write32(0x01E81020, val);
-			if (Process::Read32(0x8103C88, val)) Process::Write32(0x01E81024, val);
+			for (int i = 0; i < 40; i+=4)
+			{
+				if (Process::Read32((0x8103C64 + i), val))
+				{
+					Process::Write32((0x01E81000 + i), val);
+				}
+			}
 			Process::Write8(0x01E81028, 0xD);
 			OSD::Notify(Color::White << "Team D Copied!");
 		}
 		if(*(u8 *)0x8144010 == 0x4) //Team E equip menu
 		{
-			if (Process::Read32(0x8103C8C, val)) Process::Write32(0x01E81000, val);
-			if (Process::Read32(0x8103C90, val)) Process::Write32(0x01E81004, val);
-			if (Process::Read32(0x8103C94, val)) Process::Write32(0x01E81008, val);
-			if (Process::Read32(0x8103C98, val)) Process::Write32(0x01E8100C, val);
-			if (Process::Read32(0x8103C9C, val)) Process::Write32(0x01E81010, val);
-			if (Process::Read32(0x8103CA0, val)) Process::Write32(0x01E81014, val);
-			if (Process::Read32(0x8103CA4, val)) Process::Write32(0x01E81018, val);
-			if (Process::Read32(0x8103CA8, val)) Process::Write32(0x01E8101C, val);
-			if (Process::Read32(0x8103CAC, val)) Process::Write32(0x01E81020, val);
-			if (Process::Read32(0x8103CB0, val)) Process::Write32(0x01E81024, val);
+			for (int i = 0; i < 40; i+=4)
+			{
+				if (Process::Read32((0x8103C8C + i), val))
+				{
+					Process::Write32((0x01E81000 + i), val);
+				}
+			}
 			Process::Write8(0x01E81028, 0xE);
 			OSD::Notify(Color::White << "Team E Copied!");
 		}
@@ -738,76 +714,61 @@ namespace CTRPluginFramework
 			if(*(u8 *)0x01E81028 != 0){
 			if(*(u8 *)0x8144010 == 0) //Team A equip menu
 		{
-			if (Process::Read32(0x01E81000, val)) Process::Write32(0x8103BEC, val);
-			if (Process::Read32(0x01E81004, val)) Process::Write32(0x8103BF0, val);
-			if (Process::Read32(0x01E81008, val)) Process::Write32(0x8103BF4, val);
-			if (Process::Read32(0x01E8100C, val)) Process::Write32(0x8103BF8, val);
-			if (Process::Read32(0x01E81010, val)) Process::Write32(0x8103BFC, val);
-			if (Process::Read32(0x01E81014, val)) Process::Write32(0x8103C00, val);
-			if (Process::Read32(0x01E81018, val)) Process::Write32(0x8103C04, val);
-			if (Process::Read32(0x01E8101C, val)) Process::Write32(0x8103C08, val);
-			if (Process::Read32(0x01E81020, val)) Process::Write32(0x8103C0C, val);
-			if (Process::Read32(0x01E81024, val)) Process::Write32(0x8103C10, val);
+			for (int i = 0; i < 40; i+=4)
+			{
+				if (Process::Read32((0x01E81000 + i), val))
+				{
+					Process::Write32((0x8103BEC + i), val);
+				}
+			}
 			Process::Read8(0x01E81028, team);
 			OSD::Notify(Utils::Format("Team %X Pasted!", team));
 		}
 		if(*(u8 *)0x8144010 == 0x1) //Team B equip menu
 		{
-			if (Process::Read32(0x01E81000, val)) Process::Write32(0x8103C14, val);
-			if (Process::Read32(0x01E81004, val)) Process::Write32(0x8103C18, val);
-			if (Process::Read32(0x01E81008, val)) Process::Write32(0x8103C1C, val);
-			if (Process::Read32(0x01E8100C, val)) Process::Write32(0x8103C20, val);
-			if (Process::Read32(0x01E81010, val)) Process::Write32(0x8103C24, val);
-			if (Process::Read32(0x01E81014, val)) Process::Write32(0x8103C28, val);
-			if (Process::Read32(0x01E81018, val)) Process::Write32(0x8103C2C, val);
-			if (Process::Read32(0x01E8101C, val)) Process::Write32(0x8103C30, val);
-			if (Process::Read32(0x01E81020, val)) Process::Write32(0x8103C34, val);
-			if (Process::Read32(0x01E81024, val)) Process::Write32(0x8103C38, val);
+			for (int i = 0; i < 40; i+=4)
+			{
+				if (Process::Read32((0x01E81000 + i), val))
+				{
+					Process::Write32((0x8103C14 + i), val);
+				}
+			}
 			Process::Read8(0x01E81028, team);
 			OSD::Notify(Utils::Format("Team %X Pasted!", team));
 		}
 		if(*(u8 *)0x8144010 == 0x2) //Team C equip menu
 		{
-			if (Process::Read32(0x01E81000, val)) Process::Write32(0x8103C3C, val);
-			if (Process::Read32(0x01E81004, val)) Process::Write32(0x8103C40, val);
-			if (Process::Read32(0x01E81008, val)) Process::Write32(0x8103C44, val);
-			if (Process::Read32(0x01E8100C, val)) Process::Write32(0x8103C48, val);
-			if (Process::Read32(0x01E81010, val)) Process::Write32(0x8103C4C, val);
-			if (Process::Read32(0x01E81014, val)) Process::Write32(0x8103C50, val);
-			if (Process::Read32(0x01E81018, val)) Process::Write32(0x8103C54, val);
-			if (Process::Read32(0x01E8101C, val)) Process::Write32(0x8103C58, val);
-			if (Process::Read32(0x01E81020, val)) Process::Write32(0x8103C5C, val);
-			if (Process::Read32(0x01E81024, val)) Process::Write32(0x8103C60, val);
+			for (int i = 0; i < 40; i+=4)
+			{
+				if (Process::Read32((0x01E81000 + i), val))
+				{
+					Process::Write32((0x8103C3C + i), val);
+				}
+			}
 			Process::Read8(0x01E81028, team);
 			OSD::Notify(Utils::Format("Team %X Pasted!", team));
 		}
 		if(*(u8 *)0x8144010 == 0x3) //Team D equip menu
 		{
-			if (Process::Read32(0x01E81000, val)) Process::Write32(0x8103C64, val);
-			if (Process::Read32(0x01E81004, val)) Process::Write32(0x8103C68, val);
-			if (Process::Read32(0x01E81008, val)) Process::Write32(0x8103C6C, val);
-			if (Process::Read32(0x01E8100C, val)) Process::Write32(0x8103C70, val);
-			if (Process::Read32(0x01E81010, val)) Process::Write32(0x8103C74, val);
-			if (Process::Read32(0x01E81014, val)) Process::Write32(0x8103C78, val);
-			if (Process::Read32(0x01E81018, val)) Process::Write32(0x8103C7C, val);
-			if (Process::Read32(0x01E8101C, val)) Process::Write32(0x8103C80, val);
-			if (Process::Read32(0x01E81020, val)) Process::Write32(0x8103C84, val);
-			if (Process::Read32(0x01E81024, val)) Process::Write32(0x8103C88, val);
+			for (int i = 0; i < 40; i+=4)
+			{
+				if (Process::Read32((0x01E81000 + i), val))
+				{
+					Process::Write32((0x8103C64 + i), val);
+				}
+			}
 			Process::Read8(0x01E81028, team);
 			OSD::Notify(Utils::Format("Team %X Pasted!", team));
 		}
 		if(*(u8 *)0x8144010 == 0x4) //Team E equip menu
 		{
-			if (Process::Read32(0x01E81000, val)) Process::Write32(0x8103C8C, val);
-			if (Process::Read32(0x01E81004, val)) Process::Write32(0x8103C90, val);
-			if (Process::Read32(0x01E81008, val)) Process::Write32(0x8103C94, val);
-			if (Process::Read32(0x01E8100C, val)) Process::Write32(0x8103C98, val);
-			if (Process::Read32(0x01E81010, val)) Process::Write32(0x8103C9C, val);
-			if (Process::Read32(0x01E81014, val)) Process::Write32(0x8103CA0, val);
-			if (Process::Read32(0x01E81018, val)) Process::Write32(0x8103CA4, val);
-			if (Process::Read32(0x01E8101C, val)) Process::Write32(0x8103CA8, val);
-			if (Process::Read32(0x01E81020, val)) Process::Write32(0x8103CAC, val);
-			if (Process::Read32(0x01E81024, val)) Process::Write32(0x8103CB0, val);
+			for (int i = 0; i < 40; i+=4)
+			{
+				if (Process::Read32((0x01E81000 + i), val))
+				{
+					Process::Write32((0x8103C8C + i), val);
+				}
+			}
 			Process::Read8(0x01E81028, team);
 			OSD::Notify(Utils::Format("Team %X Pasted!", team));
 			}
@@ -842,16 +803,6 @@ namespace CTRPluginFramework
 					Process::Write32((0x8103BEC + i), val);
 				}
 			}
-			/*if (Process::Read32(0x8103CB4, val)) Process::Write32(0x8103BEC, val);
-			if (Process::Read32(0x8103CB8, val)) Process::Write32(0x8103BF0, val);
-			if (Process::Read32(0x8103CBC, val)) Process::Write32(0x8103BF4, val);
-			if (Process::Read32(0x8103CC0, val)) Process::Write32(0x8103BF8, val);
-			if (Process::Read32(0x8103CC4, val)) Process::Write32(0x8103BFC, val);
-			if (Process::Read32(0x8103CC8, val)) Process::Write32(0x8103C00, val);
-			if (Process::Read32(0x8103CCC, val)) Process::Write32(0x8103C04, val);
-			if (Process::Read32(0x8103CD0, val)) Process::Write32(0x8103C08, val);
-			if (Process::Read32(0x8103CD4, val)) Process::Write32(0x8103C0C, val);
-			if (Process::Read32(0x8103CD8, val)) Process::Write32(0x8103C10, val);*/
 			MessageBox(Color::White << "Random Team saved to Team A!")();
 			break;
 			default: {
@@ -859,7 +810,7 @@ namespace CTRPluginFramework
 			} break;
 		}
 	}
-void BackupOptions(MenuEntry *entry) {
+/*void BackupOptions(MenuEntry *entry) {
   static const std::vector<std::string> list = {
     "Back up team A", //0x8103BEC
     "Back up team B", //0x8103C14
@@ -966,7 +917,7 @@ void BackupOptions(MenuEntry *entry) {
         
   folder.Close();
   } 
- }
+ } */
  
  void InfiniteXP(MenuEntry* entry)
  {
@@ -992,4 +943,55 @@ void BackupOptions(MenuEntry *entry) {
 	 return kb->Open(output, def) == 0;
 
  }
-} 
+
+ void unlock(MenuEntry* entry)
+ {
+	u32 sav;
+	Process::Read32(0x8879838, sav);
+	if(sav == 0) {
+	MessageBox("Please select a save file first!")();
+	}
+	else {
+    for(int i = 0; i < 26; i++) {
+      Process::Write32(0x8105664 + (i * 0x4), 1);
+    }
+	for(int i = 0; i < 15; i++) {
+      Process::Write32(0x81056DC + (i * 0x4), 1);
+    }
+	for(int i = 0; i < 7; i++) {
+      Process::Write32(0x810571C + (i * 0x4), 1);
+    }
+	for(int i = 0; i < 7; i++) {
+      Process::Write32(0x8105740 + (i * 0x4), 1);
+    }
+	  Process::Write32(0x8105760, 1);
+	for(int i = 0; i < 7; i++) {
+      Process::Write32(0x810577C + (i * 0x4), 1);
+    }
+	for(int i = 0; i < 3; i++) {
+      Process::Write32(0x810579C + (i * 0x4), 1);
+    }
+	  Process::Write32(0x81057A8, 1);
+	for(int i = 0; i < 6; i++) {
+      Process::Write32(0x81057B0 + (i * 0x4), 1);
+    }
+	for(int i = 0; i < 10; i++) {
+      Process::Write32(0x81057D0 + (i * 0x4), 1);
+    }
+	for(int i = 0; i < 5; i++) {
+      Process::Write32(0x8105800 + (i * 0x4), 1);
+    }
+	for(int i = 0; i < 5; i++) {
+      Process::Write32(0x8105800 + (i * 0x4), 1);
+    }
+	  Process::Write32(0x8105818, 1);
+	for(int i = 0; i < 11; i++) {
+      Process::Write32(0x810584C + (i * 0x4), 1);
+    }
+	for(int i = 0; i < 5; i++) {
+      Process::Write32(0x810587C + (i * 0x4), 1);
+    }
+	MessageBox(Color::White << "Unlocked.")();
+	}
+ }
+}

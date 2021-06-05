@@ -195,7 +195,7 @@ namespace CTRPluginFramework
 		}
 		if((ID) == 0x33)
 		{
-			t.assign("Theif Cat");
+			t.assign("Thief Cat");
 		}
 		if((ID) == 0x34)
 		{
