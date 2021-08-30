@@ -1,9 +1,19 @@
 #include "cheats.hpp"
 #include "IDList.hpp"
-//using namespace GameHelper;
+#include "cheats.hpp"
+#include <vector>
+#include <string>
 
 namespace CTRPluginFramework
 {
+	bool toupperstr(std::string &str)
+	{
+		for (char &i : str)
+			i = toupper(i);
+
+		return true;
+	}
+	
 	std::vector<std::string> UnitList
 	{
 		"Empty",
@@ -113,107 +123,120 @@ namespace CTRPluginFramework
 		"Kasa Jizo",
 		"Kaguya-hime",//whoo its over
 	};
+	
 	Keyboard *kb = new Keyboard("Enter ID:");
 	Keyboard *optKb = new Keyboard("Choose option:");
-
+	//Region::AutoRegion(u32 jpn, u32 usa, u32 eur, u32 kor)
 	void SpeedUp(MenuEntry* entry) {
+	static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 Item = Region::AutoRegion(0x8131634, 0x81316D4, 0x81316D4, 0x81316D4);
 		Process::Write32(0x8105D4C, 0x64);
-		if(*(u8 *)0x8131FFC != 6)
-		Process::Write8(0x81316D4, 0x1);
-		if(*(u8 *)0x8131FFC == 6)
-		Process::Write8(0x81316D4, 0);
+		if(*(u8 *)IsOnline != 2)
+		Process::Write8(Item, 1);
+		if(*(u8 *)IsOnline == 2)//if online then disable
+		Process::Write8(Item, 0);
 		if (entry->WasJustActivated())
 		{
 		OSD::Notify("Speed Up will stay on!");
 		}
 	else if (!entry->IsActivated())
 	{
-	Process::Write8(0x81316D4, 0);
+	Process::Write8(Item, 0);
 	OSD::Notify(Color::White << "Speed Up " << Color::Red << "DISABLED!");
 	}
 	}
 
 	void TreasureRadar(MenuEntry* entry) {
+	static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 Item = Region::AutoRegion(0x8131635, 0x81316D5, 0x81316D5, 0x81316D5);
 		Process::Write32(0x8105D50, 0x64);
-		if(*(u8 *)0x8131FFC != 6)
-		Process::Write8(0x81316D5, 0x1);
-		if(*(u8 *)0x8131FFC == 6)
-		Process::Write8(0x81316D5, 0);
+		if(*(u8 *)IsOnline != 2)
+		Process::Write8(Item, 1);
+		if(*(u8 *)IsOnline == 2)
+		Process::Write8(Item, 0);
 		if (entry->WasJustActivated())
 		{
 		OSD::Notify("Treasure Radar will stay on!");
 		}
 	else if (!entry->IsActivated())
 	{
-	Process::Write8(0x81316D5, 0);
+	Process::Write8(Item, 0);
 	OSD::Notify(Color::White << "Treasure Radar " << Color::Red << "DISABLED!");
 	}
 	}
 
 	void RichCat(MenuEntry* entry) {
+	static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 Item = Region::AutoRegion(0x8131636, 0x81316D6, 0x81316D6, 0x81316D6);
 		Process::Write32(0x8105D54, 0x64);
-		if(*(u8 *)0x8131FFC != 6)
-		Process::Write8(0x81316D6, 0x1);
-		if(*(u8 *)0x8131FFC == 6)
-		Process::Write8(0x81316D6, 0);
+		if(*(u8 *)IsOnline != 2)
+		Process::Write8(Item, 1);
+		if(*(u8 *)IsOnline == 2)
+		Process::Write8(Item, 0);
 		if (entry->WasJustActivated())
 		{
 		OSD::Notify("Rich Cat will stay on!");
 		}
 	else if (!entry->IsActivated())
 	{
-	Process::Write8(0x81316D6, 0);
+	Process::Write8(Item, 0);
 	OSD::Notify(Color::White << "Rich Cat " << Color::Red << "DISABLED!");
 	}
 	}
 
 	void CatCPU(MenuEntry* entry) {
+	static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 Item = Region::AutoRegion(0x8131637, 0x81316D7, 0x81316D7, 0x81316D7);
 		Process::Write32(0x8105D58, 0x64);
-		if(*(u8 *)0x8131FFC != 6)
-		Process::Write8(0x81316D7, 0x1);
-		if(*(u8 *)0x8131FFC == 6)
-		Process::Write8(0x81316D7, 0);
+		if(*(u8 *)IsOnline != 2)
+		Process::Write8(Item, 1);
+		if(*(u8 *)IsOnline == 2)
+		Process::Write8(Item, 0);
 		if (entry->WasJustActivated())
 		{
 		OSD::Notify("Cat CPU will stay on!");
 		}
 	else if (!entry->IsActivated())
 	{
-	Process::Write8(0x81316D7, 0);
+	Process::Write8(Item, 0);
 	OSD::Notify(Color::White << "Cat CPU " << Color::Red << "DISABLED!");
 	}
 	}
 
 	void CatJobs(MenuEntry* entry) {
+	static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 Item = Region::AutoRegion(0x8131638, 0x81316D8, 0x81316D8, 0x81316D8);
 		Process::Write32(0x8105D5C, 0x64);
-		if(*(u8 *)0x8131FFC != 6)
-		Process::Write8(0x81316D8, 0x1);
-		if(*(u8 *)0x8131FFC == 6)
-		Process::Write8(0x81316D8, 0);
+		if(*(u8 *)IsOnline != 2)
+		Process::Write8(Item, 1);
+		if(*(u8 *)IsOnline == 2)
+		Process::Write8(Item, 0);
 		if (entry->WasJustActivated())
 		{
 		OSD::Notify("Cat Jobs will stay on!");
 		}
 	else if (!entry->IsActivated())
 	{
-	Process::Write8(0x81316D8, 0);
+	Process::Write8(Item, 0);
 	OSD::Notify(Color::White << "Cat Jobs " << Color::Red << "DISABLED!");
 	}
 	}
 	
 	void SnipertheCat(MenuEntry* entry) {
+	static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 Item = Region::AutoRegion(0x8131639, 0x81316D9, 0x81316D9, 0x81316D9);
 		Process::Write32(0x8105D60, 0x64);
-		if(*(u8 *)0x8131FFC != 6)
-		Process::Write8(0x81316D9, 0x1);
-		if(*(u8 *)0x8131FFC == 6)
-		Process::Write8(0x81316D9, 0);
+		if(*(u8 *)IsOnline != 2)
+		Process::Write8(Item, 1);
+		if(*(u8 *)IsOnline == 2)
+		Process::Write8(Item, 0);
 		if (entry->WasJustActivated())
 		{
 		OSD::Notify("Sniper the Cat will stay on!");
 		}
 	else if (!entry->IsActivated())
 	{
-	Process::Write8(0x81316D9, 0);
+	Process::Write8(Item, 0);
 	OSD::Notify(Color::White << "Sniper the Cat " << Color::Red << "DISABLED!");
 	}
 	}
@@ -223,8 +246,9 @@ namespace CTRPluginFramework
   }
   
   void CatsInstantRecharge(MenuEntry* entry) {
+  static const u32 addr = Region::AutoRegion(0x813176C, 0x813180C, 0x813180C, 0x813180C);
     for(int i = 0; i < 10; i++) {
-      Process::Write32(0x813180C + (i * 0x4), 0);
+      Process::Write32(addr + (i * 0x4), 0);
     }
   }
   
@@ -246,20 +270,23 @@ namespace CTRPluginFramework
   }
 
   void InvincibleCatBase(MenuEntry* entry) {
+  static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
   if(entry->WasJustActivated())
     OSD::Notify("You are now invincible!");
 
-   if(*(u8 *)0x8131FFC != 6)
+   if(*(u8 *)IsOnline != 2)
       Process::Write32(0x810991C, 0x10D88);
   }
   
- void EnemyBaseOneHealth(MenuEntry *entry) {
-  if(*(u8 *)0x8131FFC != 6)
-    Process::Write32(0x810D348, 0x1);
-}
+  void EnemyBaseOneHealth(MenuEntry *entry) {
+  static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+   if(*(u8 *)IsOnline != 2)
+     Process::Write32(0x810D348, 0x1);
+  }
    
   void SpecialCoordinateGuy(MenuEntry *entry) {
-	if(*(u8 *)0x8131FFC != 6)
+  static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	if(*(u8 *)IsOnline != 2)
 	Process::Write32(0x8109A2C, 0x800);
   }
 
@@ -274,12 +301,13 @@ namespace CTRPluginFramework
 		"Enter ID",
 		"Choose From List",
 	};
-	
+
     void UnitEditor(MenuEntry *entry) {
+	static const u32 SaveLoad = Region::AutoRegion(0x887D798, 0x8879838, 0x8879838, 0x8879838);
 	std::string namevalue;
     u8 ID;
 	u32 sav;
-	Process::Read32(0x8879838, sav);
+	Process::Read32(SaveLoad, sav);
     optKb->Populate(NameEdit);
 	switch (optKb->Open())
 	{
@@ -302,7 +330,7 @@ namespace CTRPluginFramework
 			switch (optKb->Open())
 		{
 			case 0://EMPY
-			Process::Write32(0x8103BEC, 0XFFFFFFFF);
+			Process::Write32(0x8103BEC, 0xFFFFFFFF);
 			break;
 			case 1://basic
 			Process::Write32(0x8103BEC, 0x2);
@@ -630,171 +658,181 @@ namespace CTRPluginFramework
     }
 	}
 
-	void NewCopy(MenuEntry *entry) {
-	u32 val;
+/*std::string decToHex(int n)
+{
+    // char array to store hexadecimal number
+    char hexaDeciNum[100];
+ 
+    // counter for hexadecimal number array
+    int i = 0;
+    while (n != 0) {
+        // temporary variable to store remainder
+        int temp = 0;
+ 
+        // storing remainder in temp variable.
+        temp = n % 16;
+ 
+        // check if temp < 10
+        if (temp < 10) {
+            hexaDeciNum[i] = temp + 48;
+            i++;
+        }
+        else {
+            hexaDeciNum[i] = temp + 55;
+            i++;
+        }
+ 
+        n = n / 16;
+    }
+ 
+    // converting char to string
+    std::string s;
+    for (int j = i - 1; j >= 0; j--) {
+        s = s + hexaDeciNum[j];
+    }
+    return s;
+}*/
+
+	void StringVectorToString(std::string &Str, std::vector<std::string> &Vec, bool ClearVector = false)
+	{
+		for (const std::string &i : Vec)
+			Str.append(i);
+
+		if (ClearVector) Vec.clear(); //Free Memory after getting Vector Data.
+	}
+	
+	bool replace(std::string& str, const std::string& from, const std::string& to) {
+    size_t start_pos = str.find(from);
+    if(start_pos == std::string::npos)
+        return false;
+    str.replace(start_pos, from.length(), to);
+    return true;
+	}
+
+std::vector<std::string> teamVec;
+
+	void NewerCopy(MenuEntry *entry) {
+	static const u32 Isteam = Region::AutoRegion(0x8052868, 0x806BE88, 0x806BE88, 0x806BE88);
+	static const u32 WhTeam = Region::AutoRegion(0x8143F70, 0x8144010, 0x8144010, 0x8144010);
+	std::string teamtxt;
 	u8 team;
-		if(Controller::IsKeysPressed(entry->Hotkeys[0].GetKeys())) {
-		if(*(u8 *)0x806BE88 != 0x4C){
+	u32 val;
+	if(entry->WasJustActivated()) {
+		if (Directory::IsExists(TeamDir) == 0)
+		Directory::Create(TeamDir);
+	}
+	if(Controller::IsKeysPressed(entry->Hotkeys[0].GetKeys())) {//copy
+		if(*(u8 *)Isteam != 0x4C){
 		OSD::Notify(Color::Red << "You can't use that here!");
+		return;
 		}
-		if(*(u8 *)0x806BE88 == 0x4C) {
-		if(*(u8 *)0x8144010 == 0) //Team A equip menu
+		else {
+		if(Process::Read8(WhTeam, team)) //find your menu
 		{
-			for (int i = 0; i < 40; i+=4)
+			teamVec.clear();
+			Sleep(Milliseconds(100));
+			if ((MessageBox(Color::White << "Do you want to name the file?", DialogType::DialogYesNo))())
 			{
-				if (Process::Read32((0x8103BEC + i), val))
-				{
-					Process::Write32((0x01E81000 + i), val);
+				std::string SaveName;
+				Sleep(Milliseconds(200));
+				Keyboard keyboard("Name the file");
+				keyboard.SetMaxLength(30);
+				if (keyboard.Open(SaveName) != -1) {
+					Sleep(Seconds(0.1f));
+
+					File SaveFile;
+					File::Open(SaveFile,"teams/"+SaveName+".bin", File::RWC);
+					SaveFile.Dump(0x8103BEC+(team*40), 40);
+						std::string name = SaveFile.GetName();
+						OSD::Notify(Color::White << "Saved team as " << Color(BubbleGum) << name);
+						replace(name, ".bin", "");
+						teamVec.push_back(name);
+					SaveFile.Close();
 				}
+				else { OSD::Notify("Aborted.");
+				return; }
 			}
-			Process::Write8(0x01E81028, 0xA);
-			OSD::Notify(Color::White << "Team A Copied!");
+			else {
+			teamVec.push_back(Utils::Format("Team %X", team+0xA));
+			StringVectorToString(teamtxt, teamVec, false);
+				File SaveFile;
+				File::Open(SaveFile,"teams/"+teamtxt+".bin", File::RWC);
+				SaveFile.Dump(0x8103BEC+(team*40), 40);
+				std::string name = SaveFile.GetName();
+				OSD::Notify(Color::White << "Saved team as " << Color(BubbleGum) << name);
+				SaveFile.Close();
+			}
 		}
-		if(*(u8 *)0x8144010 == 0x1) //Team B equip menu
-		{
-			for (int i = 0; i < 40; i+=4)
-			{
-				if (Process::Read32((0x8103C14 + i), val))
-				{
-					Process::Write32((0x01E81000 + i), val);
-				}
-			}
-			Process::Write8(0x01E81028, 0xB);
-			OSD::Notify(Color::White << "Team B Copied!");
-		}
-		if(*(u8 *)0x8144010 == 0x2) //Team C equip menu
-		{
-			for (int i = 0; i < 40; i+=4)
-			{
-				if (Process::Read32((0x8103C3C + i), val))
-				{
-					Process::Write32((0x01E81000 + i), val);
-				}
-			}
-			Process::Write8(0x01E81028, 0xC);
-			OSD::Notify(Color::White << "Team C Copied!");
-		}	
-		if(*(u8 *)0x8144010 == 0x3) //Team D equip menu
-		{
-			for (int i = 0; i < 40; i+=4)
-			{
-				if (Process::Read32((0x8103C64 + i), val))
-				{
-					Process::Write32((0x01E81000 + i), val);
-				}
-			}
-			Process::Write8(0x01E81028, 0xD);
-			OSD::Notify(Color::White << "Team D Copied!");
-		}
-		if(*(u8 *)0x8144010 == 0x4) //Team E equip menu
-		{
-			for (int i = 0; i < 40; i+=4)
-			{
-				if (Process::Read32((0x8103C8C + i), val))
-				{
-					Process::Write32((0x01E81000 + i), val);
-				}
-			}
-			Process::Write8(0x01E81028, 0xE);
-			OSD::Notify(Color::White << "Team E Copied!");
-		}
-		if(*(u8 *)0x8144010 == 0x5){//Random equip menu
-		OSD::Notify(Color::Red << "You can't use that here!");
 		}
 	}
-		}
-/*=====================================================================================================================================
-============================================================BRUH=======================================================================
-=====================================================================================================================================*/
-		if(Controller::IsKeysPressed(entry->Hotkeys[1].GetKeys())) {
-			if(*(u8 *)0x806BE88 != 0x4C){
+		if(Controller::IsKeysPressed(entry->Hotkeys[1].GetKeys())) {//paste
+		if(*(u8 *)WhTeam > 4) {//Random equip menu
 		OSD::Notify(Color::Red << "You can't use that here!");
+		return;
 		}
-		if(*(u8 *)0x806BE88 == 0x4C){
-			if(*(u8 *)0x01E81028 != 0){
-			if(*(u8 *)0x8144010 == 0) //Team A equip menu
-		{
-			for (int i = 0; i < 40; i+=4)
-			{
-				if (Process::Read32((0x01E81000 + i), val))
-				{
-					Process::Write32((0x8103BEC + i), val);
-				}
+			StringVectorToString(teamtxt, teamVec, false);
+			if (File::Exists("teams/"+teamtxt+".bin") == 0) {
+			OSD::Notify(teamtxt);
+			OSD::Notify(Color::Red << "No team file is loaded.");
+			return;
 			}
-			Process::Read8(0x01E81028, team);
-			OSD::Notify(Utils::Format("Team %X Pasted!", team));
+		if(*(u8 *)Isteam != 0x4C){
+		OSD::Notify(Color::Red << "You can't use that here!");
+		return;
 		}
-		if(*(u8 *)0x8144010 == 0x1) //Team B equip menu
-		{
-			for (int i = 0; i < 40; i+=4)
-			{
-				if (Process::Read32((0x01E81000 + i), val))
-				{
-					Process::Write32((0x8103C14 + i), val);
+			else {
+				if(teamtxt != "") {
+					if(Process::Read8(WhTeam, team))// && team == 0) //Team A equip menu
+					{
+						Directory SaveDir;
+						File SaveFile;
+						Directory::Open(SaveDir,TeamDir, true);
+						SaveDir.OpenFile(SaveFile,teamtxt+".bin", File::READ);
+						SaveFile.Inject(0x8103BEC+(team*40), 40);
+
+						OSD::Notify(Color(BubbleGum) << teamtxt+".bin" << Color::White << " Pasted!");
+					}
 				}
-			}
-			Process::Read8(0x01E81028, team);
-			OSD::Notify(Utils::Format("Team %X Pasted!", team));
-		}
-		if(*(u8 *)0x8144010 == 0x2) //Team C equip menu
-		{
-			for (int i = 0; i < 40; i+=4)
-			{
-				if (Process::Read32((0x01E81000 + i), val))
-				{
-					Process::Write32((0x8103C3C + i), val);
-				}
-			}
-			Process::Read8(0x01E81028, team);
-			OSD::Notify(Utils::Format("Team %X Pasted!", team));
-		}
-		if(*(u8 *)0x8144010 == 0x3) //Team D equip menu
-		{
-			for (int i = 0; i < 40; i+=4)
-			{
-				if (Process::Read32((0x01E81000 + i), val))
-				{
-					Process::Write32((0x8103C64 + i), val);
-				}
-			}
-			Process::Read8(0x01E81028, team);
-			OSD::Notify(Utils::Format("Team %X Pasted!", team));
-		}
-		if(*(u8 *)0x8144010 == 0x4) //Team E equip menu
-		{
-			for (int i = 0; i < 40; i+=4)
-			{
-				if (Process::Read32((0x01E81000 + i), val))
-				{
-					Process::Write32((0x8103C8C + i), val);
-				}
-			}
-			Process::Read8(0x01E81028, team);
-			OSD::Notify(Utils::Format("Team %X Pasted!", team));
+				else OSD::Notify(Color::Red << "No team selected!");
 			}
 		}
 		if (!entry->IsActivated())
-		{
-		for(int i = 0; i < 10; i++) {
-			Process::Write32(0x8103BEC+ (i * 0x6), 0);
-		}
-		}
-		if(*(u8 *)0x01E81028 == 0){
-		OSD::Notify(Color::Red << "No team selected!");
-		}
-		if(*(u8 *)0x8144010 == 0x5){ //Random equip menu
-		OSD::Notify(Color::Red << "You can't use that here!");
-		}
+			teamVec.clear();
 	}
-}
+	
+	void SetPaste(MenuEntry *entry) {
+        std::vector<std::string> FileList;
+		if (Directory::IsExists(TeamDir) == 0)
+			Directory::Create(TeamDir);
+        Directory SaveDir;
+      
+        Directory::Open(SaveDir,TeamDir, true);
+        SaveDir.ListFiles(FileList, ".bin");
+        Keyboard keyboard("Select a team to load:", FileList);
+        int FileChoice = keyboard.Open();
+
+        if(FileChoice < 0)
+            return;
+
+        Sleep(Seconds(0.1f));
+        File SaveFile;    
+        SaveDir.OpenFile(SaveFile, FileList[FileChoice], File::READ);
+		std::string name = SaveFile.GetName();
+		replace(name, ".bin", "");
+		teamVec.clear();
+		teamVec.push_back(name);
+		MessageBox(Color(BubbleGum) << name+".bin" << Color::White << " is selected!")();
 	}
+
 	void SaveRandom(MenuEntry *entry) {
+	static const u32 IsBattle = Region::AutoRegion(0x2A9E84, 0x2B81A4, 0x2B81A4, 0x2B81A4);
+	static const u32 WhTeam = Region::AutoRegion(0x8143F70, 0x8144010, 0x8144010, 0x8144010);
 	u32 val;
-			if(*(u8 *)0x8144010 != 0x5){
+			if(*(u8 *)WhTeam != 0x5){
 			MessageBox("Function Failed!\nRandom Team not loaded?\nYou must be in a battle to use this!")();
 			return;
 			}
-				switch(*(u32 *)0x2B81A4) {
+				switch(*(u32 *)IsBattle) {
 			case 0x3F000000:
 			for (int i = 0; i < 40; i+=4)
 			{
@@ -810,129 +848,22 @@ namespace CTRPluginFramework
 			} break;
 		}
 	}
-/*void BackupOptions(MenuEntry *entry) {
-  static const std::vector<std::string> list = {
-    "Back up team A", //0x8103BEC
-    "Back up team B", //0x8103C14
-    "Back up team C", //0x8103C3C
-    "Back up team D", //0x8103C64
-    "Back up team E", //0x8103C8C
-  };
-
-  static const std::vector<std::string> teams = {
-    "A", "B", "C", "D", "E"
-  }; 
-
-  static const u32 TeamAddress[5] = {
-    0x8103BEC, 0x8103C14, 0x8103C3C, 0x8103C64, 0x8103C8C
-  };  
-
-  std::vector<u32> TeamData; //Used to store the data into the vector first
-  Directory folder;
-  std::vector<std::string> files;
-  File *file = new File();
-
-  Keyboard keyboard("Select Option:", list);
-  int userChoice = keyboard.Open();
-//you could use a switch case here too, though this works aswell
-  if(userChoice == -1)
-    return;
-
-//Copies selected team to vector
-  for(int i = 0; i < 10; i++) {
-    TeamData.push_back(TeamAddress[userChoice]);
-  }
-//If teamdata vector is somehow empty return
-  if(TeamData.empty()) { 
-    return; 
-  }
-
-  Directory::Open(folder, "Teams", Directory::IsExists("Teams") == 0);
-
-  int count;
-  count = folder.ListFiles(files);
-//If File doesn't exist create the file
-  if(File::Exists("Teams/Team" << teams[userChoice] << std::to_string(count) << ".bin") == 0) 
-    File::Create("Teams/Team" << teams[userChoice] << std::to_string(count) << ".bin");
-            
-  File::Open(*file, "Teams/Team" << teams[userChoice] << std::to_string(count) << ".bin", File::Mode::WRITE);
-  file->Flush();
-  for(int i = 0; i < 10; i++) {
-    file->Write(&TeamData.at(i), 4);
-  }
-  file->Close();
-  OSD::Notify("Saved as Team" << teams[userChoice] << std::to_string(count) << ".bin");
-}
-
- void RestoreOptions(MenuEntry *entry)
- {
-  static const std::vector<std::string> list = {
-    "Restore team A", //0x8103BEC
-    "Restore team B", //0x8103C14
-    "Restore team C", //0x8103C3C
-    "Restore team D", //0x8103C64
-    "Restore team E", //0x8103C8C
-  };
-
-  static const u32 TeamAddress[5] = {
-    0x8103BEC, 0x8103C14, 0x8103C3C, 0x8103C64, 0x8103C8C
-  };  
-
-  std::vector<std::string> files;
-  File *file = new File();
-  std::vector<u32> TeamData;
-  Directory folder;
-  u32 Team;
-  int index;
-  Keyboard OP;
-
-  Keyboard keyboard("Select Option:", list);
-  int userChoice = keyboard.Open();
-
-  if(userChoice == -1)
-    return;
-
-  files.clear();
-  TeamData.clear();
-//If Directory doesn't exist create it and open it
-  Directory::Open(folder, "Teams", Directory::IsExists("Teams") == 0);
-//If there are files in the folder populate them    
-  if(folder.ListFiles(files) > 0) {
-    OP.Populate(files);
-    index = OP.Open();
-    if(index != -1) {
-      File::Open(*file, "Teams" << files.at(index), File::Mode::READ);
-      for(int i = 0; i < 10; i++) {
-        file->Read(&Team, 4);
-        TeamData.push_back(Team & 0xFFFFFFFF);
-        Process::Write32(TeamAddress[userChoice], TeamData.at(i));
-      }
-        
-      file->Close();
-      OSD::Notify(files.at(index) << " loaded!");
-    }
-  
-  else 
-    OSD::Notify("No files found.");
-        
-  folder.Close();
-  } 
- } */
  
- void InfiniteXP(MenuEntry* entry)
- {
-      Process::Write32(0x8103B88, 0xFFFFFFF);
- }
+	void InfiniteXP(MenuEntry* entry)
+	{
+		Process::Write32(0x8103B88, 0xFFFFFFF);
+	}
 
- void InfiniteCatFood(MenuEntry* entry) 
- {
-      Process::Write32(0x8103B80, 0xFFFFFFF);
- }
+	void InfiniteCatFood(MenuEntry* entry) 
+	{
+		Process::Write32(0x8103B80, 0xFFFFFFF);
+	}
 
- void InfiniteGoldTickets(MenuEntry* entry) 
- {
-      Process::Write32(0x81332C4, 0xFFFFFFF);
- }	  
+	void InfiniteGoldTickets(MenuEntry* entry)
+	{
+		static const u32 addr = Region::AutoRegion(0x8133220, 0x81332C4, 0x81332C4, 0x81332C4);
+		Process::Write32(addr, 0xFFFFFFF);
+	}
 
  bool SetUpKB(std::string msg, bool hex, const int length, u8 &output, u8 def, GetNameCallback cb)
  {
@@ -946,10 +877,12 @@ namespace CTRPluginFramework
 
  void unlock(MenuEntry* entry)
  {
+ static const u32 SaveLoad = Region::AutoRegion(0x887D798, 0x8879838, 0x8879838, 0x8879838);
 	u32 sav;
-	Process::Read32(0x8879838, sav);
+	Process::Read32(SaveLoad, sav);
 	if(sav == 0) {
 	MessageBox("Please select a save file first!")();
+	return;
 	}
 	else {
     for(int i = 0; i < 26; i++) {
