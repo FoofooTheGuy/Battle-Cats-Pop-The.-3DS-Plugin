@@ -2,7 +2,6 @@
 #define GAME_HPP
 
 #include <CTRPluginFramework.hpp>
-#include "strings.hpp"
 
 namespace CTRPluginFramework
 {
