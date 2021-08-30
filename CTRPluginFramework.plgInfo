@@ -6,7 +6,7 @@ Version: # Plugin version
     Revision: 0
 
 Targets: # Low TitleId of games which are compatibles with this plugin (0 for all)
-    - 0x0018BC00
+    - 0
 
 Title: TBCP Luma 3DS Plugin
 
