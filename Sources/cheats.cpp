@@ -128,12 +128,13 @@ namespace CTRPluginFramework
 	Keyboard *optKb = new Keyboard("Choose option:");
 	//Region::AutoRegion(u32 jpn, u32 usa, u32 eur, u32 kor)
 	void SpeedUp(MenuEntry* entry) {
-	static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
 	static const u32 Item = Region::AutoRegion(0x8131634, 0x81316D4, 0x81316D4, 0x81316D4);
 		Process::Write32(0x8105D4C, 0x64);
-		if(*(u8 *)IsOnline != 2)
+		u8 val;
+		if(Process::Read8(IsOnline, val) && val == 1)//if isnt in vs
 		Process::Write8(Item, 1);
-		if(*(u8 *)IsOnline == 2)//if online then disable
+		else
 		Process::Write8(Item, 0);
 		if (entry->WasJustActivated())
 		{
@@ -147,12 +148,13 @@ namespace CTRPluginFramework
 	}
 
 	void TreasureRadar(MenuEntry* entry) {
-	static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
 	static const u32 Item = Region::AutoRegion(0x8131635, 0x81316D5, 0x81316D5, 0x81316D5);
 		Process::Write32(0x8105D50, 0x64);
-		if(*(u8 *)IsOnline != 2)
+		u8 val;
+		if(Process::Read8(IsOnline, val) && val == 1)
 		Process::Write8(Item, 1);
-		if(*(u8 *)IsOnline == 2)
+		else
 		Process::Write8(Item, 0);
 		if (entry->WasJustActivated())
 		{
@@ -166,12 +168,13 @@ namespace CTRPluginFramework
 	}
 
 	void RichCat(MenuEntry* entry) {
-	static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
 	static const u32 Item = Region::AutoRegion(0x8131636, 0x81316D6, 0x81316D6, 0x81316D6);
 		Process::Write32(0x8105D54, 0x64);
-		if(*(u8 *)IsOnline != 2)
+		u8 val;
+		if(Process::Read8(IsOnline, val) && val == 1)
 		Process::Write8(Item, 1);
-		if(*(u8 *)IsOnline == 2)
+		else
 		Process::Write8(Item, 0);
 		if (entry->WasJustActivated())
 		{
@@ -185,12 +188,13 @@ namespace CTRPluginFramework
 	}
 
 	void CatCPU(MenuEntry* entry) {
-	static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
 	static const u32 Item = Region::AutoRegion(0x8131637, 0x81316D7, 0x81316D7, 0x81316D7);
 		Process::Write32(0x8105D58, 0x64);
-		if(*(u8 *)IsOnline != 2)
+		u8 val;
+		if(Process::Read8(IsOnline, val) && val == 1)
 		Process::Write8(Item, 1);
-		if(*(u8 *)IsOnline == 2)
+		else
 		Process::Write8(Item, 0);
 		if (entry->WasJustActivated())
 		{
@@ -204,12 +208,13 @@ namespace CTRPluginFramework
 	}
 
 	void CatJobs(MenuEntry* entry) {
-	static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
 	static const u32 Item = Region::AutoRegion(0x8131638, 0x81316D8, 0x81316D8, 0x81316D8);
 		Process::Write32(0x8105D5C, 0x64);
-		if(*(u8 *)IsOnline != 2)
+		u8 val;
+		if(Process::Read8(IsOnline, val) && val == 1)
 		Process::Write8(Item, 1);
-		if(*(u8 *)IsOnline == 2)
+		else
 		Process::Write8(Item, 0);
 		if (entry->WasJustActivated())
 		{
@@ -223,12 +228,13 @@ namespace CTRPluginFramework
 	}
 	
 	void SnipertheCat(MenuEntry* entry) {
-	static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
 	static const u32 Item = Region::AutoRegion(0x8131639, 0x81316D9, 0x81316D9, 0x81316D9);
 		Process::Write32(0x8105D60, 0x64);
-		if(*(u8 *)IsOnline != 2)
+		u8 val;
+		if(Process::Read8(IsOnline, val) && val == 1)
 		Process::Write8(Item, 1);
-		if(*(u8 *)IsOnline == 2)
+		else
 		Process::Write8(Item, 0);
 		if (entry->WasJustActivated())
 		{
@@ -253,12 +259,15 @@ namespace CTRPluginFramework
   }
   
   void InvincibleCats(MenuEntry* entry) {
+  static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
   if(entry->WasJustActivated())
     OSD::Notify("Your cats will never die!");
-
-    for(int i = 0; i < 50; i++) {
-      Process::Write32(0x8109A40+ (i * 0x124), 0xFFFFFFF);
-    }
+	u8 val;
+	if(Process::Read8(IsOnline, val) && val == 1) {
+      for(int i = 0; i < 50; i++) {
+        Process::Write32(0x8109A40+ (i * 0x124), 0xFFFFFFF);
+      }
+	}
   }
   
   void MaxBattleMoney(MenuEntry* entry) {
@@ -270,24 +279,30 @@ namespace CTRPluginFramework
   }
 
   void InvincibleCatBase(MenuEntry* entry) {
-  static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
+  static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
   if(entry->WasJustActivated())
     OSD::Notify("You are now invincible!");
 
-   if(*(u8 *)IsOnline != 2)
+		u8 val;
+		if(Process::Read8(IsOnline, val) && val == 1) {
       Process::Write32(0x810991C, 0x10D88);
+   }
   }
   
   void EnemyBaseOneHealth(MenuEntry *entry) {
-  static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
-   if(*(u8 *)IsOnline != 2)
+  static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
+		u8 val;
+		if(Process::Read8(IsOnline, val) && val != 22) {
      Process::Write32(0x810D348, 0x1);
+   }
   }
    
   void SpecialCoordinateGuy(MenuEntry *entry) {
-  static const u32 IsOnline = Region::AutoRegion(0x304B4315, 0x2A566C, 0x2A566C, 0x2A566C);
-	if(*(u8 *)IsOnline != 2)
+  static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
+		u8 val;
+		if(Process::Read8(IsOnline, val) && val == 1) {
 	Process::Write32(0x8109A2C, 0x800);
+	}
   }
 
     void GetNamecb(Keyboard &k, KeyboardEvent &e)
