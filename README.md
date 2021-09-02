@@ -2,4 +2,3 @@
 
 These are some cheat codes I made for the 3DS game, The Battle Cats: Pop!
 Don't ask why the first release is 2.0.5
-This plugin only supports the USA version of the game.
