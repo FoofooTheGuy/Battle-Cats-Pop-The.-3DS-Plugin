@@ -58,11 +58,10 @@ namespace CTRPluginFramework
     int main()
     {
 
-		PluginMenu *menu = new PluginMenu(Color::Yellow << "TBCP Plugin (" << GetRegionName() << ") " << Color::Silver << "By: FooFoo", 2, 4, 5, "TBCP Plugin Made by Foofoo\n\nyoutube.com/c/foofooanimations");
+		PluginMenu *menu = new PluginMenu(Color::Yellow << "TBCP Plugin (" << GetRegionName() << ") " << Color::Silver << "By: FooFoo", MAJ, MIN, MUM, "TBCP Plugin Made by Foofoo\n\nyoutube.com/c/foofooanimations");
 
 		menu->SynchronizeWithFrame(true);
 
-	  //If title isn't ACNL
 		if(GetRegionName() == "INVALID") {
 			Sleep(Seconds(5));
 			MessageBox("Game not supported!\nreturning to the home menu...")();
