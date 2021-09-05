@@ -6,6 +6,7 @@
 namespace CTRPluginFramework {
 	extern MenuFolder *BATC;
 	extern MenuFolder *QOLC;
+	extern MenuFolder *VERC;
 	extern MenuFolder *TEAMC;
 
 	void PatchProcess(FwkSettings &settings);
