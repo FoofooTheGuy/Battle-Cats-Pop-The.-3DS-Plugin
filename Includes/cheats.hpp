@@ -20,6 +20,11 @@ namespace CTRPluginFramework
 	#define keycolor 0xFFBF02FF
 	#define BubbleGum 0xFF126BFF
 	#define TeamDir "teams"
+	//version
+	#define MAJ 3
+	#define MIN 6
+	#define MUM 6
+
 	using GetNameCallback = void(*)(Keyboard &keyboard, KeyboardEvent &event);
 	void InitMenu(PluginMenu *menu);
 //Folder
@@ -40,8 +45,11 @@ namespace CTRPluginFramework
 	bool SetUpKB(std::string msg, bool hex, const int length, u32 &output, u32 def, GetNameCallback cb);
 	bool SetUpKB(std::string msg, bool hex, const int length, u16 &output, u16 def, GetNameCallback cb);
 	bool SetUpKB(std::string msg, bool hex, const int length, u8 &output, u8 def, GetNameCallback cb);
-	void UnitEditor(MenuEntry* entry);
+	void effects(MenuEntry* entry);
+//new folder vs
+	void bonus(MenuEntry* entry);
 //other folder
+	void UnitEditor(MenuEntry* entry);
 	void NewerCopy(MenuEntry* entry);
 	void SetPaste(MenuEntry* entry);
 	void SaveRandom(MenuEntry* entry);
