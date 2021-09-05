@@ -283,25 +283,25 @@ namespace CTRPluginFramework
   if(entry->WasJustActivated())
     OSD::Notify("You are now invincible!");
 
-		u8 val;
-		if(Process::Read8(IsOnline, val) && val == 1) {
-      Process::Write32(0x810991C, 0x10D88);
-   }
+	u8 val;
+	if(Process::Read8(IsOnline, val) && val == 1) {
+		Process::Write32(0x810991C, 0x10D88);
+	}
   }
   
   void EnemyBaseOneHealth(MenuEntry *entry) {
   static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
-		u8 val;
-		if(Process::Read8(IsOnline, val) && val != 22) {
+	u8 val;
+	if(Process::Read8(IsOnline, val) && val != 22) {
      Process::Write32(0x810D348, 0x1);
    }
   }
    
   void SpecialCoordinateGuy(MenuEntry *entry) {
   static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
-		u8 val;
-		if(Process::Read8(IsOnline, val) && val == 1) {
-	Process::Write32(0x8109A2C, 0x800);
+	u8 val;
+	if(Process::Read8(IsOnline, val) && val == 1) {
+		Process::Write32(0x8109A2C, 0x800);
 	}
   }
 
@@ -729,6 +729,7 @@ std::vector<std::string> teamVec;
 	void NewerCopy(MenuEntry *entry) {
 	static const u32 Isteam = Region::AutoRegion(0x8052868, 0x806BE88, 0x806BE88, 0x806BE88);
 	static const u32 WhTeam = Region::AutoRegion(0x8143F70, 0x8144010, 0x8144010, 0x8144010);
+	static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
 	std::string teamtxt;
 	u8 team;
 	u32 val;
@@ -737,6 +738,10 @@ std::vector<std::string> teamVec;
 		Directory::Create(TeamDir);
 	}
 	if(Controller::IsKeysPressed(entry->Hotkeys[0].GetKeys())) {//copy
+		if(*(u8 *)IsOnline != 0x1){
+		OSD::Notify(Color::Red << "You can't use that here!");
+		return;
+		}
 		if(*(u8 *)Isteam != 0x4C){
 		OSD::Notify(Color::Red << "You can't use that here!");
 		return;
@@ -744,6 +749,10 @@ std::vector<std::string> teamVec;
 		else {
 		if(Process::Read8(WhTeam, team)) //find your menu
 		{
+			if(*(u8 *)WhTeam > 4) {//Random equip menu
+			OSD::Notify(Color::Red << "You can't use that here!");
+			return;
+			}
 			teamVec.clear();
 			Sleep(Milliseconds(100));
 			if ((MessageBox(Color::White << "Do you want to name the file?", DialogType::DialogYesNo))())
@@ -781,13 +790,16 @@ std::vector<std::string> teamVec;
 		}
 	}
 		if(Controller::IsKeysPressed(entry->Hotkeys[1].GetKeys())) {//paste
+		if(*(u8 *)IsOnline != 0x1){
+		OSD::Notify(Color::Red << "You can't use that here!");
+		return;
+		}
 		if(*(u8 *)WhTeam > 4) {//Random equip menu
 		OSD::Notify(Color::Red << "You can't use that here!");
 		return;
 		}
 			StringVectorToString(teamtxt, teamVec, false);
 			if (File::Exists("teams/"+teamtxt+".bin") == 0) {
-			OSD::Notify(teamtxt);
 			OSD::Notify(Color::Red << "No team file is loaded.");
 			return;
 			}
@@ -942,4 +954,43 @@ std::vector<std::string> teamVec;
 	MessageBox(Color::White << "Unlocked.")();
 	}
  }
+
+	void effects(MenuEntry* entry) {
+	static const u32 IsOnline = Region::AutoRegion(0x29A66C, 0x2A566C, 0x2A566C, 0x2A566C);
+	static const u32 addr = Region::AutoRegion(0x813160C, 0x81316AC, 0x81316AC, 0x81316AC);
+	static const u32 boom = Region::AutoRegion(0x8132E04, 0x8132EA4, 0x8132EA4, 0x8132EA4);
+		if (entry->WasJustActivated())
+		{
+			OSD::Notify("Effects Enabled!");
+		}
+		else if (!entry->IsActivated())
+		{
+			for(int i = 0; i <= 6; i++) {
+				Process::Write8(addr + (i * 0x4), 0);
+			}
+			Process::Write8(boom, 0);
+			OSD::Notify("Effects " << Color::Red << "DISABLED!");
+		}
+		u8 val;
+		if(Process::Read8(IsOnline, val) && val == 1)
+		{
+			for(int i = 0; i <= 6; i++) {
+				Process::Write8(addr + (i * 0x4), 1);
+			}
+			Process::Write8(boom, 1);
+		}
+		else {
+			for(int i = 0; i <= 6; i++) {
+				Process::Write8(addr + (i * 0x4), 0);
+			}
+			Process::Write8(boom, 0);
+		}
+	}
+
+	void bonus(MenuEntry* entry) {
+		static const u32 addr = Region::AutoRegion(0x81319BC, 0x8131A5C, 0x8131A5C, 0x8131A5C);
+		if(Controller::IsKeysPressed(entry->Hotkeys[0].GetKeys())) {
+			Process::Write32(addr, 0x3E8);
+		}
+	}
 }
