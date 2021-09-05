@@ -3,9 +3,9 @@
 #include "MenuPointers.hpp"
 
 namespace CTRPluginFramework {
-//MenuEntry Names for Color Changer/Language Changer
 	MenuFolder *BATC;
 	MenuFolder *QOLC;
+	MenuFolder *VERC;
 	MenuFolder *TEAMC;
 
 
