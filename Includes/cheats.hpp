@@ -4,6 +4,7 @@
 #include <CTRPluginFramework.hpp>
 #include "Unicode.h"
 #include "Helpers/Region.hpp"
+#include "Helpers/Helper.hpp"
 #include "MenuPointers.hpp"
 
 
@@ -60,5 +61,6 @@ namespace CTRPluginFramework
 	void InfiniteXP(MenuEntry* entry);
 	void InfiniteCatFood(MenuEntry* entry);
 	void InfiniteGoldTickets(MenuEntry* entry);
+	//void LoadRGB(MenuEntry *entry);
 }
 #endif
