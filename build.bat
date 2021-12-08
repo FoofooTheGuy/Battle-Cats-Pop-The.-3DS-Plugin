@@ -7,7 +7,7 @@ for /f "skip=1 delims=" %%i in ('wmic logicaldisk get DeviceID^,FreeSpace^,Size'
 )
 :output
 if "%3"=="" (
-  rem echo Unable to discover the drive properties.
+  rem echo Unable to discover the drive properties. 
   goto :eof
 )
 :MAKE
