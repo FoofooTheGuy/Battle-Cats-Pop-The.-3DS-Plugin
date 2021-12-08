@@ -71,7 +71,7 @@ namespace CTRPluginFramework {
 	///Other Cheats
 		menu->Append(new MenuEntry("Infinite XP", InfiniteXP)),
 		menu->Append(new MenuEntry("Infinite Cat Food", InfiniteCatFood)),
-		menu->Append(new MenuEntry("Infinite Gold Tickets", InfiniteGoldTickets))
+		menu->Append(new MenuEntry("Infinite Gold Tickets", InfiniteGoldTickets));
 		//menu->Append(EntryWithHotkey(new MenuEntry("Run SaveIcon.bin", LoadRGB, "put the file in the plugin folder"), { Hotkey(Key::Start | Key::DPadUp, "Start/Stop the image") }));
 	}
 }
