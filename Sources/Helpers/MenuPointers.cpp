@@ -2,6 +2,8 @@
 #include "cheats.hpp"
 #include "MenuPointers.hpp"
 
+extern "C" void _ZN18CTRPluginFramework10SearchMenu12ProcessEventERSt6vectorINS_5EventESaIS2_EERNS_4TimeE();
+
 namespace CTRPluginFramework {
 	MenuFolder *BATC;
 	MenuFolder *QOLC;
@@ -11,7 +13,9 @@ namespace CTRPluginFramework {
 
     void PatchProcess(FwkSettings &settings)
     {
-        //ToggleTouchscreenForceOn();
+        *(u32*)((u32)(_ZN18CTRPluginFramework10SearchMenu12ProcessEventERSt6vectorINS_5EventESaIS2_EERNS_4TimeE)
+		+ 0xB4) = 0xE1A00000;
+
 	    settings.AllowSearchEngine = true;
         settings.AllowActionReplay = true;
         settings.WaitTimeToBoot = Time(Seconds(5));

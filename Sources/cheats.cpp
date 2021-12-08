@@ -1,6 +1,5 @@
 #include "cheats.hpp"
 #include "IDList.hpp"
-#include "cheats.hpp"
 #include <vector>
 #include <string>
 
@@ -725,6 +724,9 @@ namespace CTRPluginFramework
 	}
 
 std::vector<std::string> teamVec;
+	extern bool logoExists;
+	extern c_RGBA* logoArray;
+	bool OSD_SaveIcon(const Screen &Splash);
 
 	void NewerCopy(MenuEntry *entry) {
 	static const u32 Isteam = Region::AutoRegion(0x8052868, 0x806BE88, 0x806BE88, 0x806BE88);
@@ -749,6 +751,19 @@ std::vector<std::string> teamVec;
 		else {
 		if(Process::Read8(WhTeam, team)) //find your menu
 		{
+
+			const Screen& TopScreen = OSD::GetTopScreen();
+			File file("SaveIcon.bin", File::READ);
+			if(!file.IsOpen()) {
+				OSD::Notify("SaveIcon.bin missing!");
+				logoExists = false;
+			}
+			else {
+				logoArray = new c_RGBA[file.GetSize() / sizeof(c_RGBA)];
+				file.Read(logoArray, file.GetSize());
+				file.Close();
+			}
+
 			if(*(u8 *)WhTeam > 4) {//Random equip menu
 			OSD::Notify(Color::Red << "You can't use that here!");
 			return;
@@ -762,6 +777,7 @@ std::vector<std::string> teamVec;
 				Keyboard keyboard("Name the file");
 				keyboard.SetMaxLength(30);
 				if (keyboard.Open(SaveName) != -1) {
+					OSD::Run(OSD_SaveIcon);
 					Sleep(Seconds(0.1f));
 
 					File SaveFile;
@@ -772,11 +788,14 @@ std::vector<std::string> teamVec;
 						replace(name, ".bin", "");
 						teamVec.push_back(name);
 					SaveFile.Close();
+					OSD::Stop(OSD_SaveIcon);
+					delete[] logoArray;
 				}
 				else { OSD::Notify("Aborted.");
 				return; }
 			}
 			else {
+			OSD::Run(OSD_SaveIcon);
 			teamVec.push_back(Utils::Format("Team %X", team+0xA));
 			StringVectorToString(teamtxt, teamVec, false);
 				File SaveFile;
@@ -785,11 +804,26 @@ std::vector<std::string> teamVec;
 				std::string name = SaveFile.GetName();
 				OSD::Notify(Color::White << "Saved team as " << Color(BubbleGum) << name);
 				SaveFile.Close();
+			OSD::Stop(OSD_SaveIcon);
+			delete[] logoArray;
 			}
 		}
 		}
 	}
 		if(Controller::IsKeysPressed(entry->Hotkeys[1].GetKeys())) {//paste
+
+			const Screen& TopScreen = OSD::GetTopScreen();
+			File file("SaveIcon.bin", File::READ);
+			if(!file.IsOpen()) {
+				OSD::Notify("SaveIcon.bin missing!");
+				logoExists = false;
+			}
+			else {
+				logoArray = new c_RGBA[file.GetSize() / sizeof(c_RGBA)];
+				file.Read(logoArray, file.GetSize());
+				file.Close();
+			}
+
 		if(*(u8 *)IsOnline != 0x1){
 		OSD::Notify(Color::Red << "You can't use that here!");
 		return;
@@ -811,6 +845,7 @@ std::vector<std::string> teamVec;
 				if(teamtxt != "") {
 					if(Process::Read8(WhTeam, team))// && team == 0) //Team A equip menu
 					{
+						OSD::Run(OSD_SaveIcon);
 						Directory SaveDir;
 						File SaveFile;
 						Directory::Open(SaveDir,TeamDir, true);
@@ -818,6 +853,8 @@ std::vector<std::string> teamVec;
 						SaveFile.Inject(0x8103BEC+(team*40), 40);
 
 						OSD::Notify(Color(BubbleGum) << teamtxt+".bin" << Color::White << " Pasted!");
+						OSD::Stop(OSD_SaveIcon);
+						delete[] logoArray;
 					}
 				}
 				else OSD::Notify(Color::Red << "No team selected!");
@@ -993,4 +1030,38 @@ std::vector<std::string> teamVec;
 			Process::Write32(addr, 0x3E8);
 		}
 	}
+
+	/*void LoadRGB(MenuEntry *entry) {
+	static bool enabled = false;
+		if(Controller::IsKeysPressed(entry->Hotkeys[0].GetKeys()))
+		{
+			if (!enabled)
+			{
+				enabled = true;
+				OSD::Notify("image enabled");
+			}
+			else
+			{
+				enabled = false;
+				OSD::Notify("image disabled");
+			}
+			const Screen& TopScreen = OSD::GetTopScreen();
+			File file("SaveIcon.bin", File::READ);
+			if(!file.IsOpen()) {
+				OSD::Notify("SaveIcon.bin missing!");
+				logoExists = false;
+			}
+			else {
+				logoArray = new c_RGBA[file.GetSize() / sizeof(c_RGBA)];
+				file.Read(logoArray, file.GetSize());
+				file.Close();
+			}
+			if (enabled)
+				OSD::Run(OSD_SaveIcon);
+			else {
+			OSD::Stop(OSD_SaveIcon);
+			delete[] logoArray;
+			}
+		}
+	}*/
 }
