@@ -63,7 +63,7 @@ namespace CTRPluginFramework {
 		menu->Append(VERC);
 	//Team Codes Folder
 		TEAMC = new MenuFolder("Advanced Team Management");
-	    TEAMC->Append(new MenuEntry("Unit editor", nullptr, UnitEditor, "Sets any unit you want to team A's first slot, even ones you don't have! Go to \nhttps://github.com/FoofooTheGuy/Battle-Cats-Unit-IDs/blob/main/ID%20List\nfor the IDs")),
+	    TEAMC->Append(new MenuEntry("Unit editor", nullptr, UnitEditor, "Sets any unit you want to team A's first slot, even ones you don't have! Go to \nhttps://to.to/7qY3N\nfor the IDs")),
 		TEAMC->Append(new MenuEntry("Save Random to A", nullptr, SaveRandom, "Saves the random team that you get to Team A so that you won't have to worry about copying down your favorite selection manually")),	
 		TEAMC->Append(new MenuEntry("Unlock all units", nullptr, unlock)),
 		TEAMC->Append(EntryWithHotkey(new MenuEntry("Team Clipboard", NewerCopy, SetPaste, "Go to the team equip menu to use this\nBackups are stored in the \"team\" folder, where the plugin is.\nTap the \"KB\" button to load a team from file (if there are any.)\nThis won't work in the VS Mode Equip menu."), { Hotkey(Key::Start | Key::DPadUp, "Save team you're viewing"), Hotkey(Key::Start | Key::DPadDown, "Paste the selected team") })),
@@ -71,6 +71,7 @@ namespace CTRPluginFramework {
 	///Other Cheats
 		menu->Append(new MenuEntry("Infinite XP", InfiniteXP)),
 		menu->Append(new MenuEntry("Infinite Cat Food", InfiniteCatFood)),
-		menu->Append(new MenuEntry("Infinite Gold Tickets", InfiniteGoldTickets));
+		menu->Append(new MenuEntry("Infinite Gold Tickets", InfiniteGoldTickets)),
+		menu->Append(EntryWithHotkey(new MenuEntry("Run SaveIcon.bin", LoadRGB, "put the file in the plugin folder"), { Hotkey(Key::Start | Key::DPadUp, "Start/Stop the image") }));
 	}
 }
