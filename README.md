@@ -33,7 +33,7 @@ USA: SD:/luma/plugins/000400000018BC00/
 
 Europe: SD:/luma/plugins/000400000018F500/
 
-5. Place Battle-Cats-Plugin.3gx in that folder (E.g. SD:/luma/plugins/000400000015DA00/Battle-Cats-Plugin.3gx)
+5. Place [Battle-Cats-Plugin.3gx](https://github.com/FoofooTheGuy/Battle-Cats-Pop-The.-3DS-Plugin/releases/latest/download/Battle-Cats-Plugin.3gx) in that folder (E.g. SD:/luma/plugins/000400000015DA00/Battle-Cats-Plugin.3gx)
 6. Put your SD card back into your console and open the rosalina menu (L + D-pad down + select by default) and enable the plugin loader (4th option)
 7. Launch The Battle Cats POP!, and the screen will flash a light blue color and the message "Plugin ready!" shall appear soon after.
 
