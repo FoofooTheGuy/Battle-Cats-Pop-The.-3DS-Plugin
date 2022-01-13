@@ -10,3 +10,5 @@ I also took many examples and functions from the internet, so I apologize if I f
 
 Usage example:
 ---
+
+![uage](https://user-images.githubusercontent.com/32585652/149397786-3ae73c94-823a-4be3-bb37-b358d4ae668c.PNG)
