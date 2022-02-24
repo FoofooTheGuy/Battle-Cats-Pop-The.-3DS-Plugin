@@ -53,3 +53,7 @@ Most of the new button graphics:
 Edited CTRPF icons to fit the color scheme:
 
 ![RecoloredIcons](https://user-images.githubusercontent.com/32585652/145265643-9efd9263-cecf-4816-8767-8c77522a32e5.png)
+
+# Building
+
+install [this](https://mega.nz/file/bzRU1BaA#rwaZNp-_iki1dEwz-rAWrlG67TAg5nW5NxmQSBgBUnE) version of devkitpro and then run [build.bat](https://github.com/FoofooTheGuy/Battle-Cats-Pop-The.-3DS-Plugin/blob/main/build.bat)
