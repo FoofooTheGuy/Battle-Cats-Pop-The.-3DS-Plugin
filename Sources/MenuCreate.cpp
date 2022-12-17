@@ -4,7 +4,7 @@
 
 namespace CTRPluginFramework {
 
-	static MenuEntry *EntryWithHotkey(MenuEntry *entry, const Hotkey &hotkey)
+	/*static MenuEntry *EntryWithHotkey(MenuEntry *entry, const Hotkey &hotkey)
     {
         if (entry != nullptr)
         {
@@ -20,7 +20,7 @@ namespace CTRPluginFramework {
         }
 
         return (entry);
-    }
+    }*/
 
     static MenuEntry *EntryWithHotkey(MenuEntry *entry, const std::vector<Hotkey> &hotkeys)
     {
@@ -33,13 +33,13 @@ namespace CTRPluginFramework {
         return (entry);
     }
 
-/*This will load all the folders and entrys*/
+/*This will load all the folders and entries*/
     void InitMenu(PluginMenu *menu) {
 
 	//Battle codes folder
-		BATC = new MenuFolder("Battle Codes");
+		MenuFolder *BATC = new MenuFolder("Battle Codes");
 	//QOL Codes SubFolder
-		QOLC = new MenuFolder("Item QOL", "Quality of Life.\n\nSo that items aren't such a pain to remember");
+		MenuFolder *QOLC = new MenuFolder("Item QOL", "Quality of Life.\n\nSo that items aren't such a pain to remember");
 			QOLC->Append(new MenuEntry("Speed Up item Always on", SpeedUp, "Doesn't work in VS Mode")),
 			QOLC->Append(new MenuEntry("Treasure Radar item Always on", TreasureRadar, "Doesn't work in VS Mode")),
 			QOLC->Append(new MenuEntry("Rich Cat item Always on", RichCat, "Doesn't work in VS Mode")),
@@ -58,12 +58,12 @@ namespace CTRPluginFramework {
 			BATC->Append(new MenuEntry("All effects on", effects, "Baby boom, items, you name it.")),
 		menu->Append(BATC);
 	//VS codes folder
-		VERC = new MenuFolder("VS Mode Codes", "Friendship over.");
+		MenuFolder *VERC = new MenuFolder("VS Mode Codes", "Friendship over.");
 			VERC->Append(EntryWithHotkey(new MenuEntry("Max bonus spin", bonus), { Hotkey(Key::R, "Press to set it to maximum") })),
 		menu->Append(VERC);
 	//Team Codes Folder
-		TEAMC = new MenuFolder("Advanced Team Management");
-	    TEAMC->Append(new MenuEntry("Unit editor", nullptr, UnitEditor, "Sets any unit you want to team A's first slot, even ones you don't have! Go to \nhttps://tinyurl.com/yvdthzc5\nfor the IDs")),
+		MenuFolder *TEAMC = new MenuFolder("Advanced Team Management");
+	    TEAMC->Append(new MenuEntry("Unit editor", nullptr, UnitEditor, "Sets any unit you want to team A's first slot, even ones you don't have! Go to \nhttps://tinyurl.com/3t65nc4k\nfor the IDs")),
 		TEAMC->Append(new MenuEntry("Save Random to A", nullptr, SaveRandom, "Saves the random team that you get to Team A so that you won't have to worry about copying down your favorite selection manually")),	
 		TEAMC->Append(new MenuEntry("Unlock all units", nullptr, unlock)),
 		TEAMC->Append(EntryWithHotkey(new MenuEntry("Team Clipboard", NewerCopy, SetPaste, "Go to the team equip menu to use this\nBackups are stored in the \"team\" folder, where the plugin is.\nTap the \"KB\" button to load a team from file (if there are any.)\nThis won't work in the VS Mode Equip menu."), { Hotkey(Key::Start | Key::DPadUp, "Save team you're viewing"), Hotkey(Key::Start | Key::DPadDown, "Paste the selected team") })),
